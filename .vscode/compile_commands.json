@@ -1,0 +1,11 @@
+[
+{
+  "directory": "/Users/kacent/Documents/typst-note/qs3/graph",
+  "arguments": ["/opt/homebrew/opt/llvm/bin/clang", "-c", "-Qunused-arguments", "-g", "-O0", "-std=c++23", "-Isrc/graph", "-Ibuild/.gens/graph/macosx/arm64/debug/platform/windows/idl", "-I", "/Users/kacent/.xmake/packages/g/gtest/v1.16.0/f8caa67ecfa7492db193dabd2aabb368/include", "-o", "build/.objs/graph/macosx/arm64/debug/src/unitest/test.cpp.o", "src/unitest/test.cpp"],
+  "file": "src/unitest/test.cpp"
+},
+{
+  "directory": "/Users/kacent/Documents/typst-note/qs3/graph",
+  "arguments": ["/opt/homebrew/opt/llvm/bin/clang", "-c", "-Qunused-arguments", "-g", "-O0", "-std=c++23", "-Isrc/graph", "-Ibuild/.gens/graph/macosx/arm64/debug/platform/windows/idl", "-I", "/Users/kacent/.xmake/packages/g/gtest/v1.16.0/f8caa67ecfa7492db193dabd2aabb368/include", "-o", "build/.objs/graph/macosx/arm64/debug/src/main.cpp.o", "src/main.cpp"],
+  "file": "src/main.cpp"
+}]
