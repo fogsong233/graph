@@ -1,7 +1,10 @@
 ## libGraph
 ### build & test
-使用[Xmake](Xmake.io)构建, 在MacOS, Wsl2的clang编译器
-上成功构建, 依赖gtest单元测试, 版本是cpp23.
+使用[Xmake](Xmake.io)构建, 在MacOS, Wsl2的clang(21和20)编译器上(标准库是libcxx, gtest用的也是libcxx版本, 可以自己改成libstdc++)成功构建, 依赖gtest单元测试, 版本是cpp23.
+```bash
+xmake build && xmake run
+```
+即可编译运行.
 ### Feature
 编译期多态(Template), 对于算法和不同的Vertax的data
 在编译期就可以确定, 完全没有必要virtual.
