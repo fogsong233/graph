@@ -17,26 +17,25 @@ concept Formattable = requires(T t, std::format_context ctx) { typename std::for
 
 class UndirectedEdgeIdCounter {
 public:
-    UndirectedEdgeIdCounter() : currentId(0) {};
-
     int getNextId() {
         currentId += 2;
         return currentId;
     };
 
     static int getPairedId(int id) {
-        if(id % 2 == 0)
+        if(id % 2 == 0) {
             return id - 1;
-        else
+        } else {
             return id + 1;
+        }
     };
 
 private:
-    int currentId;
+    int currentId = 0;
 };
 
 struct VertexBase {
-    int id;
+    const int id;
 
     VertexBase(int id) : id(id) {}
 
@@ -60,7 +59,7 @@ struct Vertex : public VertexBase {
 
     Vertex<DataTy>(const Vertex<DataTy>& other) : VertexBase(other.id), data(other.data) {}
 
-    std::string toString() const {
+    [[nodiscard]] std::string toString() const {
         if constexpr(Formattable<DataTy>) {
             return std::format("vertex<{}: {}>", id, data);
         }
@@ -85,7 +84,7 @@ template <typename V>
 concept isVertex = _isVertex<V>::value;
 
 struct Edge {
-    int id;
+    const int id;
     int from;
     int to;
     int weight;
@@ -150,12 +149,12 @@ public:
 
     virtual void addVertex(const V& v) {
         data.adjMap[v.id];
-        data.idToVertex[v.id] = v;
+        data.idToVertex.emplace(v.id, v);
     }
 
     virtual bool addEdge(const Edge& e) {
         data.adjMap[e.from].insert(e.id);
-        data.idToEdge[e.id] = e;
+        data.idToEdge.emplace(e.id, e);
         return true;
     }
 
@@ -196,20 +195,21 @@ public:
         return erased;
     }
 
-    int numVertices() const {
+    [[nodiscard]] int numVertices() const {
         return data.adjMap.size();
     }
 
-    virtual int numEdges() const {
+    [[nodiscard]] virtual int numEdges() const {
         return data.idToEdge.size();
     }
 
     // getDataOfVertex：仅当 V 不是 Vertex<void> 时可用
-    std::expected<const VertexDataTy*, int> getDataOfVertex(int id) const {
+    [[nodiscard]] std::expected<const VertexDataTy*, int> getDataOfVertex(int id) const {
         static_assert(!std::is_same_v<V, Vertex<void>>, "Vertex<void> has no data");
         auto it = data.idToVertex.find(id);
-        if(it == data.idToVertex.end())
+        if(it == data.idToVertex.end()) {
             return std::unexpected(-1);
+        }
         return std::expected<const VertexDataTy*, int>(&(it->second.data));
     }
 
@@ -237,11 +237,11 @@ public:
         GraphData<V> subData;
         subData.adjMap = std::move(adjMap);
         for(const auto& [id, _]: subData.adjMap) {
-            subData.idToVertex[id] = data.idToVertex.at(id);
+            subData.idToVertex.emplace(id, data.idToVertex.at(id));
         }
         for(const auto& [id, edges]: subData.adjMap) {
             for(auto eid: edges) {
-                subData.idToEdge[eid] = data.idToEdge.at(eid);
+                subData.idToEdge.emplace(eid, data.idToEdge.at(eid));
             }
         }
         return subData;
@@ -252,11 +252,11 @@ public:
         GraphData<V> subData;
         subData.adjMap = std::move(adjMap);
         for(const auto& [id, edges]: subData.adjMap) {
-            subData.idToVertex[id] = data.idToVertex.at(id);
+            subData.idToVertex.emplace(id, data.idToVertex.at(id));
             for(auto eid: edges) {
-                subData.idToEdge[eid] = data.idToEdge.at(eid);
-                subData.idToVertex[data.idToEdge.at(eid).to] =
-                    data.idToVertex.at(data.idToEdge.at(eid).to);
+                auto& ed = data.idToEdge.at(eid);
+                subData.idToEdge.emplace(eid, ed);
+                subData.idToVertex.emplace(ed.to, data.idToVertex.at(ed.to));
             }
         }
         return subData;
@@ -313,9 +313,9 @@ public:
 
     bool addEdge(const Edge& e) override {
         this->data.adjMap[e.from].insert(e.id);
-        this->data.idToEdge[e.id] = e;
+        this->data.idToEdge.emplace(e.id, e);
         Edge revEdge(UndirectedEdgeIdCounter::getPairedId(e.id), e.to, e.from, e.weight);
-        this->data.idToEdge[revEdge.id] = revEdge;
+        this->data.idToEdge.emplace(revEdge.id, revEdge);
         this->data.adjMap[e.to].insert(revEdge.id);
         return true;
     }

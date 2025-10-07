@@ -2,9 +2,13 @@ add_rules("mode.debug", "mode.release")
 add_rules("plugin.compile_commands.autoupdate", {outputdir = ".vscode"})
 set_toolchains("clang")
 set_languages("c++23")
-add_requires("gtest", {configs = {cxflags = "-stdlib=libc++"}, system=false })
- add_ldflags("-lc++", "-lc++abi", {force = true})
-    add_links("c++", "c++abi")
+add_ldflags("-stdlib=libc++", "-lc++", "-lc++abi", {force = true})
+add_cxflags("-stdlib=libc++", {force = true})
+add_requires("gtest", {configs = {
+    toolchains = "clang", 
+    cxflags = "-stdlib=libc++",
+    ldflags = "-stdlib=libc++"  
+}})
 
 
 target("graph")

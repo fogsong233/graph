@@ -1,11 +1,11 @@
 [
 {
-  "directory": "/Users/kacent/Documents/typst-note/qs3/graph",
-  "arguments": ["/opt/homebrew/opt/llvm/bin/clang", "-c", "-Qunused-arguments", "-g", "-O0", "-std=c++23", "-Isrc/graph", "-Ibuild/.gens/graph/macosx/arm64/debug/platform/windows/idl", "-I", "/Users/kacent/.xmake/packages/g/gtest/v1.16.0/f8caa67ecfa7492db193dabd2aabb368/include", "-o", "build/.objs/graph/macosx/arm64/debug/src/unitest/test.cpp.o", "src/unitest/test.cpp"],
+  "directory": "/home/kacent/project/graph",
+  "arguments": ["/usr/local/llvm-21/bin/clang", "-c", "-Qunused-arguments", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++23", "-Isrc/graph", "-I", "/home/kacent/.xmake/packages/g/gtest/v1.17.0/a788e81c73a4435ebcdaa6275180599c/include", "-stdlib=libc++", "-DNDEBUG", "-o", "build/.objs/graph/linux/x86_64/release/src/unitest/test.cpp.o", "src/unitest/test.cpp"],
   "file": "src/unitest/test.cpp"
 },
 {
-  "directory": "/Users/kacent/Documents/typst-note/qs3/graph",
-  "arguments": ["/opt/homebrew/opt/llvm/bin/clang", "-c", "-Qunused-arguments", "-g", "-O0", "-std=c++23", "-Isrc/graph", "-Ibuild/.gens/graph/macosx/arm64/debug/platform/windows/idl", "-I", "/Users/kacent/.xmake/packages/g/gtest/v1.16.0/f8caa67ecfa7492db193dabd2aabb368/include", "-o", "build/.objs/graph/macosx/arm64/debug/src/main.cpp.o", "src/main.cpp"],
+  "directory": "/home/kacent/project/graph",
+  "arguments": ["/usr/local/llvm-21/bin/clang", "-c", "-Qunused-arguments", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++23", "-Isrc/graph", "-I", "/home/kacent/.xmake/packages/g/gtest/v1.17.0/a788e81c73a4435ebcdaa6275180599c/include", "-stdlib=libc++", "-DNDEBUG", "-o", "build/.objs/graph/linux/x86_64/release/src/main.cpp.o", "src/main.cpp"],
   "file": "src/main.cpp"
 }]

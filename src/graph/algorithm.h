@@ -51,7 +51,7 @@ std::vector<int> tarjan(const Graph<V>& graph) {
             const auto& edge = graph.getEdge(edgeId);
             int toIndex = idToIndex[edge.to];
 
-            if(vis[toIndex] == false) {
+            if(!vis[toIndex]) {
                 parent[toIndex] = index;
                 childrenNum[index]++;
                 self(self, toIndex);
