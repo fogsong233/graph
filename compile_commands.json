@@ -1,0 +1,11 @@
+[
+{
+  "directory": "/home/kacent/project/graph",
+  "arguments": ["/usr/local/llvm-21/bin/clang", "-c", "-Qunused-arguments", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++23", "-Isrc/graph", "-I", "/home/kacent/.xmake/packages/g/gtest/v1.17.0/a788e81c73a4435ebcdaa6275180599c/include", "-stdlib=libc++", "-DNDEBUG", "-o", "build/.objs/graph/linux/x86_64/release/src/unitest/test.cpp.o", "src/unitest/test.cpp"],
+  "file": "src/unitest/test.cpp"
+},
+{
+  "directory": "/home/kacent/project/graph",
+  "arguments": ["/usr/local/llvm-21/bin/clang", "-c", "-Qunused-arguments", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++23", "-Isrc/graph", "-I", "/home/kacent/.xmake/packages/g/gtest/v1.17.0/a788e81c73a4435ebcdaa6275180599c/include", "-stdlib=libc++", "-DNDEBUG", "-o", "build/.objs/graph/linux/x86_64/release/src/main.cpp.o", "src/main.cpp"],
+  "file": "src/main.cpp"
+}]

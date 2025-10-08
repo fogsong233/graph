@@ -1,0 +1,12 @@
+CompileFlags:
+  Add:
+    - "-Qunused-arguments"
+    - "-m64"
+    - "-fvisibility=hidden"
+    - "-fvisibility-inlines-hidden"
+    - "-O3"
+    - "-std=c++23"
+    - "-Isrc/graph"
+    - "-stdlib=libc++"
+    - "-DNDEBUG"
+  Compiler: /usr/local/llvm-21/bin/clang
